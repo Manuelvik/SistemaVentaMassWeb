@@ -1,0 +1,39 @@
+name: CI - Build completo
+
+on:
+  push:
+    branches: [ "main" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  full-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Compilar back-end
+        working-directory: backend
+        run: mvn clean install -DskipTests
+
+      - name: Instalar dependencias del front-end
+        working-directory: frontend
+        run: npm install
+
+      - name: Compilar front-end
+        working-directory: frontend
+        run: npm run build

@@ -1,0 +1,38 @@
+name: CD - Frontend GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/cd-frontend-pages.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Instalar dependencias
+        working-directory: frontend
+        run: npm install
+
+      - name: Compilar Angular para GitHub Pages
+        working-directory: frontend
+       run: npm run build -- --base-href=/SistemaVentaMassWeb/
+
+      - name: Desplegar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: frontend/dist/frontend/browser

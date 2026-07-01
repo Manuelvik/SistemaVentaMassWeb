@@ -1,0 +1,30 @@
+name: CI - Validar estructura
+
+on:
+  push:
+    branches: [ "main" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar carpetas principales
+        run: |
+          echo "Validando estructura del proyecto..."
+
+          test -d backend
+          test -f backend/pom.xml
+          test -d backend/src
+
+          test -d frontend
+          test -f frontend/package.json
+          test -d frontend/src
+
+          echo "Estructura correcta: backend y frontend existen."
