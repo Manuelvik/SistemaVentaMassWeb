@@ -1,0 +1,68 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="page-header">
+    <div>
+      <h2>Dashboard</h2>
+      <p>Resumen general del sistema de ventas</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="card-stat">
+        <div class="icon bg-yellow">
+          <i class="bi bi-people"></i>
+        </div>
+        <div>
+          <h4>{{ totalClientes }}</h4>
+          <p>Clientes registrados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-stat">
+        <div class="icon bg-blue">
+          <i class="bi bi-box-seam"></i>
+        </div>
+        <div>
+          <h4>{{ totalProductos }}</h4>
+          <p>Productos registrados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-stat">
+        <div class="icon bg-green">
+          <i class="bi bi-cart-check"></i>
+        </div>
+        <div>
+          <h4>{{ totalVentas }}</h4>
+          <p>Ventas registradas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-stat">
+        <div class="icon bg-dark-custom">
+          <i class="bi bi-truck"></i>
+        </div>
+        <div>
+          <h4>{{ totalProveedores }}</h4>
+          <p>Proveedores registrados</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome-card mt-4">
+    <h4>Bienvenido al Sistema Venta Mass</h4>
+    <p>
+      Desde este panel los empleados pueden registrar clientes, administrar productos,
+      controlar proveedores y generar ventas con descuento automático de stock.
+    </p>
+  </div>
+</div>

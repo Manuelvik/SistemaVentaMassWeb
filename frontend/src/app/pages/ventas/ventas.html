@@ -1,0 +1,157 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="page-header">
+    <div>
+      <h2>Ventas</h2>
+      <p>Registro de ventas para empleados</p>
+    </div>
+  </div>
+
+  <div *ngIf="mensaje" class="alert alert-success">
+    {{ mensaje }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-5">
+      <div class="form-card">
+        <h5>Nueva venta</h5>
+
+        <div class="mb-3">
+          <label class="form-label">Cliente</label>
+          <select class="form-select" [(ngModel)]="clienteIdSeleccionado" name="cliente">
+            <option [ngValue]="null">Seleccione un cliente</option>
+            <option *ngFor="let c of clientes" [ngValue]="c.id">
+              {{ c.nombre }} - {{ c.dni }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-7 mb-3">
+            <label class="form-label">Producto</label>
+            <select class="form-select" [(ngModel)]="productoIdSeleccionado" name="producto">
+              <option [ngValue]="null">Seleccione producto</option>
+              <option *ngFor="let p of productos" [ngValue]="p.id">
+                {{ p.nombre }} | Stock: {{ p.stock }} | S/ {{ p.precio }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Cantidad</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="cantidad"
+              name="cantidad"
+              min="1">
+          </div>
+
+          <div class="col-md-2 mb-3 d-flex align-items-end">
+            <button class="btn btn-dark w-100" type="button" (click)="agregarProducto()">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="detalle-box mt-3">
+          <h6>Detalle de venta</h6>
+
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let item of carrito; let i = index">
+                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>S/ {{ item.precioUnitario }}</td>
+                <td>S/ {{ item.subtotal }}</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-danger" (click)="eliminarDetalle(i)">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr *ngIf="carrito.length === 0">
+                <td colspan="5" class="text-center text-muted py-3">
+                  No hay productos agregados
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="total-box">
+            <span>Total:</span>
+            <strong>S/ {{ calcularTotal() }}</strong>
+          </div>
+        </div>
+
+        <button class="btn btn-warning w-100 fw-bold mt-3" type="button" (click)="registrarVenta()">
+          Registrar venta
+        </button>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="table-card">
+        <div class="table-header">
+          <h5>Ventas registradas</h5>
+          <span>{{ ventas.length }} ventas</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Empleado</th>
+              <th>Total</th>
+              <th>Estado</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let v of ventas">
+              <td>{{ v.id }}</td>
+              <td>{{ v.fecha | date:'short' }}</td>
+              <td>{{ v.cliente?.nombre }}</td>
+              <td>{{ v.empleado?.nombre }}</td>
+              <td>S/ {{ v.total }}</td>
+              <td>
+                  <span class="badge bg-success">
+                    {{ v.estado }}
+                  </span>
+              </td>
+            </tr>
+
+            <tr *ngIf="ventas.length === 0">
+              <td colspan="6" class="text-center text-muted py-4">
+                No hay ventas registradas
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,181 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="page-header">
+    <div>
+      <h2>Productos</h2>
+      <p>Registro y administración del inventario</p>
+    </div>
+  </div>
+
+  <div *ngIf="mensaje" class="alert alert-success">
+    {{ mensaje }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="form-card">
+        <h5>{{ editando ? 'Editar producto' : 'Nuevo producto' }}</h5>
+
+        <form (ngSubmit)="guardarProducto()">
+          <div class="mb-3">
+            <label class="form-label">Código</label>
+            <input
+              type="text"
+              class="form-control"
+              name="codigo"
+              [(ngModel)]="producto.codigo"
+              placeholder="Ejemplo: P001">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              [(ngModel)]="producto.nombre"
+              placeholder="Nombre del producto">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input
+              type="text"
+              class="form-control"
+              name="descripcion"
+              [(ngModel)]="producto.descripcion"
+              placeholder="Descripción breve">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Categoría</label>
+            <input
+              type="text"
+              class="form-control"
+              name="categoria"
+              [(ngModel)]="producto.categoria"
+              placeholder="Ejemplo: Bebidas">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Precio</label>
+              <input
+                type="number"
+                class="form-control"
+                name="precio"
+                [(ngModel)]="producto.precio"
+                min="0"
+                step="0.10">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Stock</label>
+              <input
+                type="number"
+                class="form-control"
+                name="stock"
+                [(ngModel)]="producto.stock"
+                min="0">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Proveedor</label>
+            <select
+              class="form-select"
+              name="proveedor"
+              [(ngModel)]="proveedorIdSeleccionado">
+              <option [ngValue]="null">Sin proveedor</option>
+              <option *ngFor="let p of proveedores" [ngValue]="p.id">
+                {{ p.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100 fw-bold">
+            {{ editando ? 'Actualizar producto' : 'Guardar producto' }}
+          </button>
+
+          <button
+            *ngIf="editando"
+            type="button"
+            class="btn btn-secondary w-100 mt-2"
+            (click)="limpiarFormulario()">
+            Cancelar edición
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="table-card">
+        <div class="table-header">
+          <h5>Lista de productos</h5>
+          <span>{{ productos.length }} registrados</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Código</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Proveedor</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let p of productos">
+              <td>{{ p.id }}</td>
+              <td>{{ p.codigo }}</td>
+              <td>
+                <strong>{{ p.nombre }}</strong>
+                <br>
+                <small class="text-muted">{{ p.descripcion }}</small>
+              </td>
+              <td>{{ p.categoria }}</td>
+              <td>S/ {{ p.precio }}</td>
+              <td>
+                  <span
+                    class="badge"
+                    [class.bg-success]="p.stock > 10"
+                    [class.bg-warning]="p.stock <= 10 && p.stock > 0"
+                    [class.bg-danger]="p.stock === 0">
+                    {{ p.stock }}
+                  </span>
+              </td>
+              <td>{{ p.proveedor?.nombre || 'Sin proveedor' }}</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-2" (click)="editarProducto(p)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button class="btn btn-sm btn-outline-danger" (click)="eliminarProducto(p.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="productos.length === 0">
+              <td colspan="8" class="text-center text-muted py-4">
+                No hay productos registrados
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

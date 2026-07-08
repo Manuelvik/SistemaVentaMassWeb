@@ -1,0 +1,49 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <i class="bi bi-shop"></i>
+    </div>
+    <h5>Sistema Mass</h5>
+    <small>Panel de empleados</small>
+  </div>
+
+  <div class="user-box">
+    <i class="bi bi-person-circle"></i>
+    <div>
+      <strong>{{ nombre }}</strong>
+      <span>{{ rol }}</span>
+    </div>
+  </div>
+
+  <nav class="menu">
+    <a routerLink="/dashboard">
+      <i class="bi bi-speedometer2"></i>
+      Dashboard
+    </a>
+
+    <a routerLink="/clientes">
+      <i class="bi bi-people"></i>
+      Clientes
+    </a>
+
+    <a routerLink="/proveedores">
+      <i class="bi bi-truck"></i>
+      Proveedores
+    </a>
+
+    <a routerLink="/productos">
+      <i class="bi bi-box-seam"></i>
+      Productos
+    </a>
+
+    <a routerLink="/ventas">
+      <i class="bi bi-cart-check"></i>
+      Ventas
+    </a>
+  </nav>
+
+  <button class="logout-btn" (click)="cerrarSesion()">
+    <i class="bi bi-box-arrow-left"></i>
+    Cerrar sesión
+  </button>
+</div>

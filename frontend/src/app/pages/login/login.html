@@ -1,0 +1,45 @@
+<div class="login-page">
+  <div class="login-card shadow-lg">
+    <div class="text-center mb-4">
+      <div class="logo-circle">
+        <i class="bi bi-shop"></i>
+      </div>
+      <h3 class="mt-3 mb-1">Sistema Venta Mass</h3>
+      <p class="text-muted">Acceso para empleados</p>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger py-2">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="iniciarSesion()">
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          name="usuario"
+          [(ngModel)]="usuario"
+          placeholder="Ingrese su usuario">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Ingrese su contraseña">
+      </div>
+
+      <button class="btn btn-warning w-100 fw-bold" type="submit" [disabled]="cargando">
+        {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+    </form>
+
+    <div class="mt-4 small text-center text-muted">
+      Usuario: <b>admin</b> | Contraseña: <b>123456</b>
+    </div>
+  </div>
+</div>

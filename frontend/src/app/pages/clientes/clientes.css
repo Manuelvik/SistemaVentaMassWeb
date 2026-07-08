@@ -1,0 +1,81 @@
+.main-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 30px;
+  overflow-x: hidden;
+}
+
+.page-header {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.page-header h2 {
+  margin: 0;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.page-header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+.form-card,
+.table-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-card h5,
+.table-header h5 {
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  height: 44px;
+  border-radius: 10px;
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.table-header span {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.table thead th {
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.table tbody td {
+  color: #374151;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}

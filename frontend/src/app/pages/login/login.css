@@ -1,0 +1,39 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8d000, #ffed75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 18px;
+  padding: 35px;
+}
+
+.logo-circle {
+  width: 75px;
+  height: 75px;
+  background: #f8d000;
+  color: #1f2937;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 35px;
+}
+
+.form-control {
+  height: 45px;
+  border-radius: 10px;
+}
+
+.btn {
+  height: 45px;
+  border-radius: 10px;
+}
