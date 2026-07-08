@@ -2,7 +2,8 @@ name: CD - Frontend GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
     paths:
       - "frontend/**"
       - ".github/workflows/cd-frontend-pages.yml"
@@ -29,10 +30,10 @@ jobs:
 
       - name: Compilar Angular para GitHub Pages
         working-directory: frontend
-       run: npm run build -- --base-href=/SistemaVentaMassWeb/
+        run: npm run build -- --base-href=/SistemaVentaMassWeb/
 
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: frontend/dist/frontend/browser
+          publish_dir: frontend/dist/frontend
