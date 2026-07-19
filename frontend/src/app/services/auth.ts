@@ -8,7 +8,7 @@ import { LoginResponse } from '../models/login-response';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth';
+  private apiUrl = '/api/auth';
 
   constructor(private http: HttpClient) {}
 

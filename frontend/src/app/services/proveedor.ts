@@ -7,8 +7,7 @@ import { Proveedor } from '../models/proveedor';
   providedIn: 'root',
 })
 export class ProveedorService {
-  private apiUrl = 'http://localhost:8080/proveedores';
-
+  private apiUrl = '/api/proveedores';
   constructor(private http: HttpClient) {}
 
   listar(): Observable<Proveedor[]> {

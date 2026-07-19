@@ -7,8 +7,7 @@ import { VentaRequest } from '../models/venta-request';
   providedIn: 'root',
 })
 export class VentaService {
-  private apiUrl = 'http://localhost:8080/ventas';
-
+  private apiUrl = '/api/ventas';
   constructor(private http: HttpClient) {}
 
   listar(): Observable<any[]> {
